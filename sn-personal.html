@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>আমাদের ওয়েবসাইট - আকর্ষণীয় হোম পেজ</title>
+    <style>
+        /* CSS রিসেট এবং বেসিক স্টাইল */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* নেভিগেশন বার */
+        nav {
+            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60%;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.5s ease-out;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        /* হিরো সেকশন */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            margin-top: 70px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            animation: fadeIn 1.5s ease-in-out;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            max-width: 700px;
+            margin-bottom: 2rem;
+            animation: fadeIn 2s ease-in-out;
+            padding: 0 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #f1c40f;
+            color: #333;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeIn 2.5s ease-in-out;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .cta-button:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* ফিচার সেকশন */
+        .features {
+            padding: 5rem 1rem;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #333;
+            padding: 0 1rem;
+        }
+        
+        .features-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .feature-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #9d50bb;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+        }
+        
+        .feature-card p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+        
+        /* ডেভেলপার সম্পর্কে সেকশন */
+        .about-developer {
+            padding: 5rem 1rem;
+            background-color: #f9f9f9;
+            min-height: auto;
+        }
+
+        .developer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+        .developer-image {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .developer-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: auto;
+            object-fit: cover;
+        }
+
+        .developer-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .developer-info h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #6e48aa;
+            margin-bottom: 1.5rem;
+        }
+
+        .developer-info p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .skills {
+            margin-top: 2rem;
+        }
+
+        .skills h4 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #6e48aa;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+        }
+        
+        /* যোগাযোগ সেকশন স্টাইল */
+        .contact-section {
+            padding: 5rem 1rem;
+            background-color: white;
+            text-align: center;
+            min-height: auto;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: #6e48aa;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+        }
+
+        .contact-details {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .contact-details i {
+            margin-right: 10px;
+            color: #9d50bb;
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+
+        .contact-details a {
+            color: #6e48aa;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* ফুটার */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        footer p {
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+        }
+        marquee{
+            color: red;
+        }
+        
+        /* অ্যানিমেশন */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 1024px) {
+            .feature-card {
+                max-width: calc(50% - 1rem);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #6e48aa;
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                clip-path: circle(0px at 90% -10%);
+                -webkit-clip-path: circle(0px at 90% -10%);
+                pointer-events: none;
+                opacity: 0;
+            }
+            
+            .nav-links.active {
+                clip-path: circle(1000px at 90% -10%);
+                -webkit-clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.5rem;
+            }
+            
+            .hero {
+                margin-top: 60px;
+                padding: 0 1rem;
+                min-height: 500px;
+            }
+        
+            .feature-card {
+                max-width: 100%;
+            }
+            
+            .developer-container {
+                gap: 2rem;
+            }
+
+            .contact-info {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            html {
+                font-size: 12px;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .hero {
+                min-height: 400px;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .developer-image, .developer-info {
+                min-width: 100%;
+            }
+
+            .contact-details p {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.5rem;
+            }
+
+            .skill-tag {
+                padding: 0.2rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- নেভিগেশন বার -->
+    <nav>
+        <div class="logo">SN SIFAT WEBSITE</div>
+        <button class="mobile-menu-btn" aria-label="মেনু টগল করুন">☰</button>
+        <ul class="nav-links">
+            <li><a href="#hero" class="nav-link">হোম</a></li>
+            <li><a href="#features" class="nav-link">সেবা</a></li>
+            <li><a href="#about" class="nav-link">ডেভেলপারের সম্পর্কে</a></li>
+            <li><a href="#contact" class="nav-link">যোগাযোগ</a></li>
+        </ul>
+    </nav>
+    
+    <!-- হিরো সেকশন -->
+    <section class="hero" id="hero">
+        <h1>আপনার ডিজিটাল অভিজ্ঞতা উন্নত করুন</h1>
+        <p>আমরা আপনাকে প্রদান করি সেরা ওয়েব সমাধান এবং ডিজিটাল পরিষেবা যা আপনার ব্যবসাকে নতুন উচ্চতায় নিয়ে যাবে</p>
+        <a href="#contact" class="cta-button">এখনই শুরু করুন</a>
+    </section>
+    
+    <!-- ফিচার সেকশন -->
+    <section class="features" id="features">
+        <h2 class="section-title">আমাদের সেবাসমূহ</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h3>ওয়েব ডেভেলপমেন্ট</h3>
+                <p>আধুনিক ও রেস্পন্সিভ ওয়েবসাইট ডিজাইন এবং ডেভেলপমেন্ট সেবা</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>মোবাইল অ্যাপ</h3>
+                <p>আইওএস এবং অ্যান্ড্রয়েডের জন্য হাইব্রিড ও নেটিভ মোবাইল অ্যাপ্লিকেশন</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>ডিজিটাল মার্কেটিং</h3>
+                <p>সার্চ ইঞ্জিন অপ্টিমাইজেশন এবং সোশ্যাল মিডিয়া মার্কেটিং স্ট্র্যাটেজি</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>সাইবার সিকিউরিটি</h3>
+                <p>আপনার ডিজিটাল সম্পদ সুরক্ষিত রাখুন আমাদের বিশেষায়িত সাইবার সিকিউরিটি সমাধান সহ</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍💻</div>
+                <h3>ইথিকাল হ্যাকিং</h3>
+                <p>আপনার সিস্টেমের দুর্বলতা চিহ্নিত করুন আমাদের লাইসেন্সপ্রাপ্ত ইথিকাল হ্যাকারদের মাধ্যমে</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ডেভেলপারের সম্পর্কে সেকশন -->
+    <section class="about-developer" id="about">
+        <h2 class="section-title"> about developer  </h2>
+        <div class="developer-container">
+            <div class="developer-image">
+                <img src="c:\Users\User\OneDrive\Pictures\NIGHT TOWN.jpg" alt="ডেভেলপারের ছবি" loading="lazy">
+            </div>
+            <div class="developer-info">
+                <h3>MD.SHAHRIAR NAFIS SIFAT</h3>
+                <p>আমি একজন কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজির শিক্ষার্থী পড়ালেখা করছি গোপালগঞ্জ সরকারি পলিটেকনিক ইনিস্টিটিউটে, আমি এস.এস.সি পাস করেছি জয়পুরহাট জেলার পাঁচবিবি উপজেলার পাঁচবিবি এল.বি.পাইলট সরকারি উচ্চ বিদ্যালয় থেকে। আমি একজন প্যাশনেট ওয়েব ডেভেলপার এবং প্রোগ্রামার। ৩ বছরেরও বেশি অভিজ্ঞতা নিয়ে আমি বিভিন্ন ধরনের ওয়েব অ্যাপ্লিকেশন এবং মোবাইল অ্যাপ্লিকেশন ডেভেলপ করেছি।</p>
+                <p>আমার কাজের মূল লক্ষ্য হলো ক্লায়েন্টদের জন্য উচ্চমানের, নিরাপদ এবং ব্যবহারকারী বান্ধব সলিউশন প্রদান করা। আমি সবসময় নতুন প্রযুক্তি শিখতে এবং আমার দক্ষতা উন্নত করতে আগ্রহী।</p>
+                <div class="skills">
+                    <h4>আমার দক্ষতা:</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python, Java</span>
+                        <span class="skill-tag">Cybersecurity</span>
+                        <span class="skill-tag">Ethical Hacking</span>
+                        <span class="skill-tag">UI/UX Design & graphics design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- যোগাযোগ সেকশন -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">যোগাযোগ করুন</h2>
+        <div class="contact-info">
+            <h3>আমাদের সাথে যোগাযোগের তথ্য</h3>
+            <div class="contact-details">
+                <p><i>📱</i> মোবাইল নং: ০১৯৭১৪২১৬৩৭</p>
+                <p><i>📧</i> ইমেইল: <a href="mailto:softwaresns232@gmail.com">softwaresns232@gmail.com</a></p>
+                <p><i>🌐</i> ফেইসবুক আইডি: <a href="https://www.facebook.com/share/1EKGfaebhN/" target="_blank" rel="noopener noreferrer">facebook.com/share/1EKGfaebhN/</a></p>
+                <p><i>🏢</i> ঠিকানা: পাঁচবিবি,জয়পুরহাট,বাংলাদেশ</p>
+            </div>
+        </div>
+    </section>
+    <marquee><h2>thanks for visit this website</h2></marquee>
+    
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; ২০২৫ আমাদের কোম্পানি sn group of IT support. সকল অধিকার সংরক্ষিত।</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // মোবাইল মেনু টগল
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            });
+            
+            // নেভিগেশন লিঙ্কে ক্লিক করলে মেনু বন্ধ করুন (মোবাইলে)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+            
+            // নেভিগেশন বার স্ক্রল ইফেক্ট
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.padding = window.innerWidth <= 768 ? '0.8rem 1rem' : '0.5rem 2rem';
+                    nav.style.background = 'rgba(110, 72, 170, 0.95)';
+                } else {
+                    nav.style.padding = window.innerWidth <= 768 ? '1rem 1rem' : '1rem 2rem';
+                    nav.style.background = 'linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%)';
+                }
+            });
+            
+            // স্ক্রল অ্যানিমেশন
+            function animateOnScroll() {
+                const featureCards = document.querySelectorAll('.feature-card');
+                featureCards.forEach((card, index) => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        setTimeout(() => {
+                            card.classList.add('animated');
+                        }, index * 100);
+                    }
+                });
+            }
+            
+            // পেজ লোড হলে এবং স্ক্রল হলে অ্যানিমেশন ট্রিগার
+            window.addEventListener('load', animateOnScroll);
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // ছোট ডিভাইসে টাচ ইভেন্ট হ্যান্ডলিং
+            document.addEventListener('touchstart', function(){}, {passive: true});
+        });
+    </script>
+</body>
+</html>
